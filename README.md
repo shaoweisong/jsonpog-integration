@@ -1,7 +1,7 @@
 # jsonPOG-integration
 
 
-**POG folder **
+**POG folder**
 
 Each object have a json, and each POG has a folder for storage
 
@@ -18,7 +18,7 @@ POG/JME/jetchs
 POG/BTV/btagging
 POG/BTV/ctagging
 
-** repository with templates and tools r**
+**Repository with templates and tools**
 
 for the time beging things are here
 https://github.com/nsmith-/correctionlib
