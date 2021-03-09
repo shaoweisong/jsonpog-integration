@@ -30,6 +30,7 @@ https://github.com/nsmith-/correctionlib
 
 **Script folder**
 
+Once a PR is made, a test is being started.
 The tests will happen with the script defined here
 Goal of the test:
 * verify can be loadeded
@@ -38,7 +39,7 @@ Goal of the test:
 
 **Distribution to users**
 
-Once a PR is made, a test is being started and once the PR is merged a copy is saved in *cvms* for distribution.
+Once the PR is merged a copy is saved in *cvms* for distribution.
 
 
 
