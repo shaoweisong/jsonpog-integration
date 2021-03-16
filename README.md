@@ -18,7 +18,7 @@ Each object have a json, and each POG has a folder for storage
 
 Initial notes: 
 1. we have one json for Run2, one for Run3
-2. we have one json for all the data taking years go together i.e. 2016/2017/2018 and sililarly the prompt, re-reco, UL go on the same file.
+2. we have one json for all the data taking years: i.e. 2016/2017/2018 to together and sililarly the prompt, re-reco, UL go on the same file.
 3. the label identifier should be unique: i.e. 2016postVFP_UL
 
 
@@ -33,13 +33,15 @@ https://github.com/nsmith-/correctionlib
 Once a PR is made, a test is being started.
 The tests will happen with the script defined here
 Goal of the test:
-* verify can be loadeded
+* verify can be loaded
 * verify that is compliant to the format "Schema Version" 
-
+* at each change we create a verisioned object file and a tag for the whole set Vxx_yy.
 
 **Distribution to users**
 
-Once the PR is merged a copy is saved in *cvms* for distribution.
+
+Once the PR is merged a copy is saved in */cvmfs/cms.cern.ch* for distribution.
+A script on CVMFS downloads all the tags available.
 
 
 
