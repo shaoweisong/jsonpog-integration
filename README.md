@@ -21,11 +21,12 @@ Initial notes:
 1. we have one json for Run2, one for Run3
 2. we have one json for all the data taking years: i.e. 2016/2017/2018 go together and sililarly the prompt, re-reco, UL go on the same file.
 3. the "inputs" labels should be unique and standardized
---> first set (the year) should be something like X_Y where
-X: 2016preVFP, 2016postVFP, 2017, 2018
-Y: Prompt,EOY, UL
-i.e. 2016postVFP_UL
---> second set use the string "sf","syst" (all lower cases)
+- first set (the year) should be something like X_Y where
+    X: 2016preVFP, 2016postVFP, 2017, 2018
+    Y: Prompt,EOY, UL
+    i.e. 2016postVFP_UL
+- second set use the string "sf","syst" (all lower cases)
+
 
 
 **Repository with templates and tools in github**
