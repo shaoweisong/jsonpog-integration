@@ -25,7 +25,7 @@ Initial notes:
 **Repository with templates and tools**
 
 for the time being things are here
-https://github.com/nsmith-/correctionlib
+https://github.com/cms-nanoAOD/correctionlib
 
 
 **Script folder**
