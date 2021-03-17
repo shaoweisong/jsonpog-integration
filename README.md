@@ -1,8 +1,9 @@
 # jsonPOG-integration
 
 
-**POG folder**
+**POG folder in gitlab**
 
+In this folder we store all the corrections.
 Each object have a json, and each POG has a folder for storage
 
 | directory  | name.json |
@@ -18,8 +19,11 @@ Each object have a json, and each POG has a folder for storage
 
 Initial notes: 
 1. we have one json for Run2, one for Run3
-2. we have one json for all the data taking years: i.e. 2016/2017/2018 to together and sililarly the prompt, re-reco, UL go on the same file.
-3. the label identifier should be unique: i.e. 2016postVFP_UL
+2. we have one json for all the data taking years: i.e. 2016/2017/2018 go together and sililarly the prompt, re-reco, UL go on the same file.
+3. the label identifier (first set of "keys") should be unique: i.e. 2016postVFP_UL
+we want to standardize these labels such as X_Y where
+X: 2016preVFP, 2016postVFP, 2017, 2018
+Y: Prompt, EOY, UL
 
 
 **Repository with templates and tools in github**
