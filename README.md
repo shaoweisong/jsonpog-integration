@@ -51,18 +51,11 @@ A script on CVMFS downloads all the tags available.
 
 **HOW to read the jsons**
 
-here an example on how to read the Electron JSON
 
-Format of the evaluation 
+Format of the evaluation i.e. for electron
 `evaluator[ JSON Map Name ].evaluate( year , Value Type , Working Point , eta , pt )`
 
-Python Example to print a scale factor value
-```
-from correctionlib import _core
-evaluator = _core.CorrectionSet.from_string(cset.json(exclude_unset=True, indent=4))
-valsf= evaluator["UL-Electron-ID-SF"].evaluate("2017","sf","Medium",1.1, 34.0)
-print("sf is:"+str(valsf))
-```
+See folder Examples on how to read a scale factor value
 
 
 
