@@ -46,10 +46,23 @@ Goal of the test:
 
 **Distribution to users**
 
-
 Once the PR is merged a copy is saved in */cvmfs/cms.cern.ch* for distribution.
 A script on CVMFS downloads all the tags available.
 
+**How to read the JSON*
+
+here an example on how to read the Electron JSON
+
+Format of the evaluation 
+`evaluator[ JSON Map Name ].evaluate( year , Value Type , Working Point , eta , pt )`
+
+Python Example to print a scale factor value
+```
+from correctionlib import _core
+evaluator = _core.CorrectionSet.from_string(cset.json(exclude_unset=True, indent=4))
+valsf= evaluator["UL-Electron-ID-SF"].evaluate("2017","sf","Medium",1.1, 34.0)
+print("sf is:"+str(valsf))
+```
 
 
 
