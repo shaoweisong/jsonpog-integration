@@ -49,7 +49,7 @@ Goal of the test:
 Once the PR is merged a copy is saved in */cvmfs/cms.cern.ch* for distribution.
 A script on CVMFS downloads all the tags available.
 
-**How to read the JSON*
+**HOW to read the jsons**
 
 here an example on how to read the Electron JSON
 
