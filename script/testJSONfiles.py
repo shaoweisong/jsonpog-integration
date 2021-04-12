@@ -26,10 +26,9 @@ for fileName in onlyfiles:
     if os.stat(fileName).st_size == 0:
         print("Skipping empty file %s"%fileName)
         continue
-    isFailed = not testJSONfile(fileName)
-    if isFailed: failedTests.append(fileName)
+    if not testJSONfile(fileName): failedTests.append(fileName)
 
-if isFailed: 
+if len(failedTests)>0: 
     raise Exception("testJSONfiles.py is failed for the following files:" + str(failedTests))
 
 print()
