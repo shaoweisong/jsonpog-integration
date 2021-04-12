@@ -1,0 +1,23 @@
+build-job:
+  stage: build
+  script:
+    - echo "Hello, $GITLAB_USER_LOGIN!"
+
+example_1:
+  stage: test
+  script:
+    - echo "This just an example job for test"
+
+real_test:
+  stage: test
+  image: coffeateam/coffea-base:latest
+  script:
+    - echo "Starting the real test"
+    - pip install correctionlib
+    - python testJSONfiles.py
+    - echo "Done"
+
+deploy-prod:
+  stage: deploy
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
