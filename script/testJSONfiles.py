@@ -29,7 +29,8 @@ for fileName in onlyfiles:
     if not testJSONfile(fileName): failedTests.append(fileName)
 
 if len(failedTests)>0: 
-    raise Exception("testJSONfiles.py is failed for the following files:" + str(failedTests))
+    print("\ntestJSONfiles.py is FAILED for the following files: %s \n"%str(failedTests))
+    CorrectionSet.parse_file(failedTests[0])
 
 print()
 print("testJSONfiles.py is DONE without errors.")
