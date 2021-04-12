@@ -14,7 +14,7 @@ real_test:
   script:
     - echo "Starting the real test"
     - pip install correctionlib
-    - python testJSONfiles.py
+    - python script/testJSONfiles.py
     - echo "Done"
 
 deploy-prod:
