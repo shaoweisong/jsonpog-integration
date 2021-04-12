@@ -21,11 +21,16 @@ def testJSONfile( fileName ):
 
 import glob, os
 onlyfiles = glob.glob("POG/*/*.json")
+failedTests = []
 for fileName in onlyfiles:
     if os.stat(fileName).st_size == 0:
         print("Skipping empty file %s"%fileName)
         continue
-    testJSONfile(fileName)
+    isFailed = not testJSONfile(fileName)
+    if isFailed: failedTests.append(fileName)
+
+if isFailed: 
+    raise Exception("testJSONfiles.py is failed for the following files:" + str(failedTests))
 
 print()
 print("testJSONfiles.py is DONE without errors.")
