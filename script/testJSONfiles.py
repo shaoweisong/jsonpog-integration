@@ -19,9 +19,12 @@ def testJSONfile( fileName ):
     print(f"{fileName} -> test passed")
     return True
 
-import glob
-onlyfiles = glob.glob("./*.json")
+import glob, os
+onlyfiles = glob.glob("POG/*/*.json")
 for fileName in onlyfiles:
+    if os.stat(fileName).st_size == 0:
+        print("Skipping empty file %s"%fileName)
+        continue
     testJSONfile(fileName)
 
 print()
