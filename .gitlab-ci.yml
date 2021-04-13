@@ -1,16 +1,9 @@
-build-job:
-  stage: build
-  script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
-
-real_test:
+test:
   stage: test
   image: python:3.9.4
   script:
-    - echo "Starting the real test"
-    - pip install correctionlib
-    - python script/testJSONfiles.py
-    - echo "Done"
+    - pip install correctionlib>=2.0.0rc4
+    - find . -name *.json | xargs correction validate
 
 deploy-prod:
   stage: deploy
