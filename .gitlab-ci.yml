@@ -3,7 +3,7 @@ test:
   image: python:3.9.4
   script:
     - pip install correctionlib>=2.0.0rc4
-    - find . -name *.json | xargs correction validate
+    - find . -name *.json | xargs correction validate --version 2
 
 deploy-prod:
   stage: deploy
