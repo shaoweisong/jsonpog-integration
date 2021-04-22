@@ -57,7 +57,8 @@ Format of the evaluation i.e. for electron
 See folder Examples on how to read a scale factor value
 
 
-**INSPECT the jsons*
+**INSPECT the jsons**
+
 `correction summary file.json`
 
 
