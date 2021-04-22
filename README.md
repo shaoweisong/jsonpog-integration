@@ -51,12 +51,14 @@ A script on CVMFS downloads all the tags available.
 
 **HOW to read the jsons**
 
-
 Format of the evaluation i.e. for electron
 `evaluator[ JSON Map Name ].evaluate( year , Value Type , Working Point , eta , pt )`
 
 See folder Examples on how to read a scale factor value
 
+
+**INSPECT the jsons*
+`correction summary file.json`
 
 
 # Instructions for testing the PRs
