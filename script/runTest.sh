@@ -1,4 +1,6 @@
 #!/bin/bash
+CHANGED_FILES=""
+BROKEN_FILES=""
 for i in $(find POG -name *.json); do # Whitespace-safe but not recursive.
     DIFF="$(cmp --silent cms-nanoAOD-repo/$i $i; echo $?)"
     correction validate --version 2 $i
@@ -15,7 +17,12 @@ for i in $(find POG -name *.json); do # Whitespace-safe but not recursive.
         echo "-------------- differences in file ----------------------------------------"
         git diff --no-index cms-nanoAOD-repo/$i $i
         echo "----------------------------------------------------------------------------"
+        CHANGED_FILES=$CHANGED_FILES"\n"$i
     else
         echo "No changes in "$i" wrt cms-nanoAOD/jsonpog-integration.git. "
     fi
 done
+
+echo -e "Files with changes:"$CHANGED_FILES
+
+echo "Done."
