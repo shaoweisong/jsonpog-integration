@@ -8,6 +8,7 @@ for i in $(find POG -name *.json); do # Whitespace-safe but not recursive.
         echo
         echo "######### ERROR in "$i" #########"
         correction validate --version 2 $i
+        echo "#################################################################"
         echo
         BROKEN_FILES=$BROKEN_FILES"\n"$i
     else
