@@ -4,8 +4,11 @@ CHANGED_FILES=""
 BROKEN_FILES=""
 for i in $(find POG -name *.json); do # Whitespace-safe but not recursive.
     STATUS="$(correction validate --version 2 $i; echo $?)"
-    STATUS=${STATUS: -1}
-    if [[ $STATUS -ne 0 ]]; then
+    if [[ ${STATUS: -1} -ne 0 ]]; then
+        echo
+        echo "######### ERROR in "$i" #########"
+        correction validate --version 2 $i
+        echo
         BROKEN_FILES=$BROKEN_FILES"\n"$i
     else
         DIFF="$(cmp --silent cms-nanoAOD-repo/$i $i; echo $?)"
@@ -30,6 +33,7 @@ for i in $(find POG -name *.json); do # Whitespace-safe but not recursive.
     fi
 done
 
+echo
 echo -e "Good files with no changes:"$NOCHANGED_FILES
 echo
 echo -e "Good files with changes:"$CHANGED_FILES
