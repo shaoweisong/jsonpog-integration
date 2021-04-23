@@ -5,6 +5,7 @@ test:
     - pip install correctionlib==2.0.0rc4
     - git clone https://sdonato:Wu9CyAMDWsxd25JtdP9A@gitlab.cern.ch/sdonato/jsonpog-integration.git  -b master cms-nanoAOD-repo --depth 1
     - script/runTest.sh
+    - echo $TEST_VARIABLE
 #    - find . -name *.json | xargs correction validate --version 2
 
 deploy-prod:
