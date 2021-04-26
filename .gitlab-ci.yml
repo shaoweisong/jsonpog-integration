@@ -3,7 +3,12 @@ test:
   image: python:3.9.4
   script:
     - pip install correctionlib==2.0.0rc4
-    - find . -name *.json | xargs correction validate --version 2
+    - git clone https://sdonato:Wu9CyAMDWsxd25JtdP9A@gitlab.cern.ch/sdonato/jsonpog-integration.git  -b master cms-nanoAOD-repo --depth 1
+    - script/runTest.sh
+    - echo "TEST_VARIABLE"
+    - echo $TEST_VARIABLE
+    - echo ".$TEST_VARIABLE."
+#    - find . -name *.json | xargs correction validate --version 2
 
 deploy-prod:
   stage: deploy
@@ -14,5 +19,5 @@ workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
-      when: never
-    - if: '$CI_COMMIT_BRANCH'
+      #      when: never
+      #- if: '$CI_COMMIT_BRANCH'
