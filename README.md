@@ -9,13 +9,13 @@ Each object have a json, and each POG has a folder for storage
 | directory  | year campaign | name.json |
 | ---------- | --------------| ----------|
 | POG/EGM  | "X_Y"  | photon.json |
-|          | "" | electron.json |
-| POG/TAU  | "" | tau.json |
-| POG/MUON | "" | muon.json |
-| POG/JME  | "" | fatJetPuppi.json |
-|          | "" | jetCHS.json |
-| POG/BTV  | "" | bjets.json |
-|          | "" | cjets.json |
+|          |  "" | electron.json |
+| POG/TAU  |  "" | tau.json |
+| POG/MUON |  "" | muon.json |
+| POG/JME  |  "" | fatJetPuppi.json |
+|          |  "" | jetCHS.json |
+| POG/BTV  |  "" | bjets.json |
+|          |  "" | cjets.json |
 
 Initial notes: 
 1. different campaings are organized in folders with label "X_Y" i.e. (2016preVFP_UL, 2016postVFP_UL, 2017_UL, 2018_UL ...) (later we will add the *_EOY)
