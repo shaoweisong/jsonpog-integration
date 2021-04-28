@@ -6,22 +6,22 @@
 In this folder we store all the corrections.
 Each object have a json, and each POG has a folder for storage
 
-| directory  | name.json |
-| -------- | ----------|
-| POG/EGM  | photon.json |
-|          | electron.json |
-| POG/TAU  | tau.json |
-| POG/MUON | muon.json |
-| POG/JME  | fatJetPuppi.json |
-|          | jetCHS.json |
-| POG/BTV  | bjets.json |
-|          | cjets.json |
+| directory  | year campaign | name.json |
+| ---------- | --------------| ----------|
+| POG/EGM  |  | photon.json |
+|          |  | electron.json |
+| POG/TAU  |  | tau.json |
+| POG/MUON |  | muon.json |
+| POG/JME  |  | fatJetPuppi.json |
+|          |  | jetCHS.json |
+| POG/BTV  |  | bjets.json |
+|          |  | cjets.json |
 
 Initial notes: 
-1. we have one json for Run2, one for Run3
-2. we have one json for all the data taking years: i.e. 2016/2017/2018 go together and sililarly the prompt, re-reco, UL go on the same file.
+1. different campaings are organized in folders (2016preVFP_UL, 2016postVFP_UL, 2017_UL, 2018_UL ...) (later we will add the *_EOY)
+2. each object in nano get one json
 3. the "inputs" labels should be unique and standardized
-- first set (the year) should be something like X_Y where
+- (the X_Y year) should be kept in the json to mantain the provenance
     X: 2016preVFP, 2016postVFP, 2017, 2018
     Y: Prompt,EOY, UL
     i.e. 2016postVFP_UL
@@ -42,6 +42,7 @@ The tests will happen with the script defined here
 Goal of the test:
 * verify can be loaded
 * verify that is compliant to the format "Schema Version" 
+* run the summary to inspect them 
 * at each change we create a verisioned object file and a tag for the whole set Vxx_yy.
 
 **Distribution to users**
