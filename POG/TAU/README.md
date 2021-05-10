@@ -47,11 +47,8 @@ correction summary POG/TAU/2018_ReReco/tau.json
 ```
 You can load the set of corrections as follows in python as
 ```
-import json
 import correctionlib.schemav2 as schema
-with open("POG/TAU/2018_ReReco/tau.json") as file:
-  data = json.load(file)
-cset = schema.CorrectionSet.parse_obj(data)
+schema.CorrectionSet.parse_file("POG/TAU/2018_ReReco/tau.json")
 corr1 = cset["DeepTau2017v2p1VSjet"]
 corr2 = cset["DeepTau2017v2p1VSe"]
 corr3 = cset["tau_trigger"]
@@ -66,3 +63,15 @@ tes = corr4.evaluate(pt,eta,dm,genmatch,syst,"DeepTau2017v2p1")
 ```
 A C++ example can be found [here](https://github.com/cms-nanoAOD/correctionlib/blob/master/src/demo.cc)
 
+Alternative way to load the JSON files (including gunzip'ed):
+```
+import json, gzip
+import correctionlib.schemav2 as schema
+if fname.endswith(".json.gz"):
+  with gzip.open(fname,'rt') as file:
+    data = json.load(file)
+else:
+  with open(fname) as file:
+    data = json.load(file)
+cset = schema.CorrectionSet.parse_obj(data)
+```
