@@ -1,4 +1,4 @@
-# TauPOG-recommonded Tau corrections
+# TauPOG-recommonded tau corrections
 
 This repository contains the scale factors (SFs) and energy scales recommended by the TauPOG.
 More detailed recommendations can be found on this TWiki page: https://twiki.cern.ch/twiki/bin/viewauth/CMS/TauIDRecommendationForRun2
@@ -45,10 +45,11 @@ Find out the content of the `tau.json` using
 gunzip POG/TAU/2018_ReReco/tau.json.gz
 correction summary POG/TAU/2018_ReReco/tau.json
 ```
+An example is given in [examples/tauExample.py](../../examples/tauExample.py).
 You can load the set of corrections as follows in python as
 ```
-import correctionlib.schemav2 as schema
-schema.CorrectionSet.parse_file("POG/TAU/2018_ReReco/tau.json")
+import correctionlib as _core
+cset = _core.CorrectionSet.from_file("tau.json")
 corr1 = cset["DeepTau2017v2p1VSjet"]
 corr2 = cset["DeepTau2017v2p1VSe"]
 corr3 = cset["tau_trigger"]
@@ -58,20 +59,26 @@ And then on an event-by-event basis with reconstructed tau objects, you can do
 ```
 sf1 = corr1.evaluate(pt,dm,genmatch,wp,syst,"pt")
 sf2 = corr2.evaluate(eta,genmatch,wp,syst)
-sf3 = corr3.evaluate(pt,dm,genmatch,wp,syst,"etau")
-tes = corr4.evaluate(pt,eta,dm,genmatch,syst,"DeepTau2017v2p1")
+sf3 = corr3.evaluate(pt,dm,"etau",wp,"sf",syst)
+tes = corr4.evaluate(pt,eta,dm,genmatch,"DeepTau2017v2p1",syst)
 ```
+Where `syst='nom'`, `'up'` or  `'down'`.
 A C++ example can be found [here](https://github.com/cms-nanoAOD/correctionlib/blob/master/src/demo.cc)
 
 Alternative way to load the JSON files (including gunzip'ed):
 ```
-import json, gzip
-import correctionlib.schemav2 as schema
+import correctionlib as _core
+fname = "tau.json.gz"
 if fname.endswith(".json.gz"):
+  import gzip
   with gzip.open(fname,'rt') as file:
-    data = json.load(file)
+    data = file.read().strip()
+  cset = _core.CorrectionSet.from_string(data)
 else:
-  with open(fname) as file:
-    data = json.load(file)
-cset = schema.CorrectionSet.parse_obj(data)
+  cset = _core.CorrectionSet.from_file(fname)
 ```
+
+
+## References
+
+The TauPOG JSON files are created from https://github.com/cms-tau-pog/correctionlib
