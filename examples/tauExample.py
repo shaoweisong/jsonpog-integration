@@ -23,9 +23,11 @@ corr3 = cset["tau_trigger"]
 corr4 = cset["tau_energy_scale"]
 pt, eta, dm, genmatch = 25., 1.0, 0, 5
 wp, syst = "Tight", "nom"
+print('-'*50)
 print("fname=%r"%fname)
 print("pt=%.2f, eta=%.1f, dm=%d"%(pt,eta,dm))
 print("wp=%r, syst=%r"%(wp,wp))
+print('-'*50)
 
 # DeepTau2017v2p1VSjet
 sf1 = corr1.evaluate(pt,dm,1,wp,"nom","pt")
@@ -48,3 +50,4 @@ tes1 = corr4.evaluate(pt,eta,dm,1,"DeepTau2017v2p1",syst)
 tes2 = corr4.evaluate(pt,eta,dm,5,"DeepTau2017v2p1",syst)
 print("tes=%.2f (genmatch=1)"%tes1)
 print("tes=%.2f (genmatch=5)"%tes2)
+print('-'*50)
