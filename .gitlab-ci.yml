@@ -3,7 +3,8 @@ test:
   image: python:3.9.4
   script:
     - pip install correctionlib==2.0.0rc4
-    - git clone https://sdonato:Wu9CyAMDWsxd25JtdP9A@gitlab.cern.ch/sdonato/jsonpog-integration.git  -b master cms-nanoAOD-repo --depth 1
+    - git clone https://cms-nanoAOD:Xi1nyy2QgmDfE9qv2M95@gitlab.cern.ch/cms-nanoAOD/jsonpog-integration.git  -b master cms-nanoAOD-repo --depth 1
+    - rm -rf script && cp -r cms-nanoAOD-repo/script .
     - script/runTest.sh
     - echo "TEST_VARIABLE"
     - echo $TEST_VARIABLE
