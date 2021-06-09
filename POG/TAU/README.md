@@ -16,7 +16,6 @@ This is a rough summary of the available SFs for `DeepTau2017v2p1`:
 
 (*) An extra uncertainty is recommended if you use a different working point (WP) combination than was used to measure the SFs,
 see the [TWiki](https://twiki.cern.ch/twiki/bin/viewauth/CMS/TauIDRecommendationForRun2).
-The tool should take this automatically into account with the `otherVSlepWP` flag.
 
 The gen-matching is defined as:
 * `1` for prompt electrons
@@ -45,7 +44,7 @@ Find out the content of the `tau.json` using
 gunzip POG/TAU/2018_ReReco/tau.json.gz
 correction summary POG/TAU/2018_ReReco/tau.json
 ```
-An example is given in [examples/tauExample.py](../../examples/tauExample.py).
+An example is given in [`examples/tauExample.py`](../../examples/tauExample.py).
 You can load the set of corrections as follows in python as
 ```
 import correctionlib as _core
@@ -63,7 +62,7 @@ sf3 = corr3.evaluate(pt,dm,"etau",wp,"sf",syst)
 tes = corr4.evaluate(pt,eta,dm,genmatch,"DeepTau2017v2p1",syst)
 ```
 Where `syst='nom'`, `'up'` or  `'down'`.
-A C++ example can be found [here](https://github.com/cms-nanoAOD/correctionlib/blob/master/src/demo.cc)
+A C++ example can be found [here](https://github.com/cms-nanoAOD/correctionlib/blob/master/src/demo.cc).
 
 Alternative way to load the JSON files (including gunzip'ed):
 ```
