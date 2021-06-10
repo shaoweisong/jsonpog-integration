@@ -3,6 +3,9 @@ NOCHANGED_FILES=""
 ADDED_FILES=""
 CHANGED_FILES=""
 BROKEN_FILES=""
+
+"pip install correctionlib==v2.0.0rc5"
+
 for i in $(find POG | grep "\.gz"); do # Run gunzip of .gz files
     echo gunzip $i
     gunzip $i
