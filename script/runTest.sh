@@ -3,6 +3,11 @@ NOCHANGED_FILES=""
 ADDED_FILES=""
 CHANGED_FILES=""
 BROKEN_FILES=""
+for i in $(find POG | grep "\.gz"); do # Run gunzip of .gz files
+    echo gunzip $i
+    gunzip $i
+done
+
 for i in $(find POG | grep "\." | grep -v README.md); do # Whitespace-safe but not recursive.
     STATUS="$(correction validate --version 2 $i; echo $?)"
     if [[ ${STATUS: -1} -ne 0 ]]; then
