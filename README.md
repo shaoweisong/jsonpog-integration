@@ -26,7 +26,7 @@ Initial notes:
     Y: Prompt,EOY, UL
     i.e. 2016postVFP_UL
 - second set use the string "sf","syst" (all lower cases)
-
+4. store the json in .gz format for compression
 
 
 **Repository with templates and tools in github**
