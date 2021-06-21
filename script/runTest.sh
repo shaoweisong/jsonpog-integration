@@ -3,7 +3,15 @@ NOCHANGED_FILES=""
 ADDED_FILES=""
 CHANGED_FILES=""
 BROKEN_FILES=""
-for i in $(find POG -name *.json); do # Whitespace-safe but not recursive.
+
+pip install correctionlib==v2.0.0rc6
+
+#for i in $(find POG | grep "\.gz"); do # Run gunzip of .gz files
+#    echo gunzip $i
+#    gunzip $i
+#done
+
+for i in $(find POG | grep "\." | grep -v README.md); do # Whitespace-safe but not recursive.
     STATUS="$(correction validate --version 2 $i; echo $?)"
     if [[ ${STATUS: -1} -ne 0 ]]; then
         echo
