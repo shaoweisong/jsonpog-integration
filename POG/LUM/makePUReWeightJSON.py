@@ -214,22 +214,35 @@ def main():
                         "description": "Event weight for pileup reweighting"
                         },
                     "data": {
-                        "nodetype": "binning",
-                        "input": "NumTrueInteractions",
-                        "edges": list(ratioBins),
-                        "content": [
-                            {
-                                "nodetype": "category",
-                                "input": "weights",
-                                "content": (
-                                     [{"key": "nominal", "value": nomRatio[i]}]+
-                                    ([{"key": "up", "value": upRatio[i]}] if upRatio is not None else [])+
-                                    ([{"key": "down", "value": downRatio[i]}] if downRatio is not None else [])
-                                    )
-                                }
-                            for i in range(nomRatio.shape[0])
-                            ],
-                        "flow": "clamp"
+                        "nodetype": "category",
+                        "input": "weights",
+                        "content": ([{
+                            "key": "nominal",
+                            "value": {
+                                "nodetype": "binning",
+                                "input": "NumTrueInteractions",
+                                "flow": "clamp",
+                                "edges": list(ratioBins),
+                                "content": list(nomRatio)
+                            }}]+([{
+                                "key": "up",
+                                "value": {
+                                    "nodetype": "binning",
+                                    "input": "NumTrueInteractions",
+                                    "flow": "clamp",
+                                    "edges": list(ratioBins),
+                                    "content": list(upRatio)
+                                }}] if upRatio is not None else []
+                            )+([{
+                                "key": "down",
+                                "value": {
+                                    "nodetype": "binning",
+                                    "input": "NumTrueInteractions",
+                                    "flow": "clamp",
+                                    "edges": list(ratioBins),
+                                    "content": list(downRatio)
+                                }}] if downRatio is not None else [])
+                            )
                         }
                     }]
                 }
