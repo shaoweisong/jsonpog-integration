@@ -68,7 +68,7 @@ mcPUProfiles = {
         }
 
 def getHist(fName, hName="pileup"):
-    from bamboo.root import gbl
+    from cppyy import gbl
     tf = gbl.TFile.Open(fName)
     if not tf:
         raise RuntimeError("Could not open file '{0}'".format(fName))
@@ -144,7 +144,7 @@ def main():
         if args.mcprofile:
             logger.warning("MC PU profile and MC files are passed - extracting from the files")
         logger.info("Extracting the MC profile from {0} in the {1} tree of: {2}".format(args.mcreweightvar, args.mctreename, ", ".join(args.mcfiles)))
-        from bamboo.root import gbl
+        from cppyy import gbl
         tup = gbl.TChain(args.mctreename)
         for mcfn in args.mcfiles:
             tup.Add(mcfn)
@@ -214,22 +214,35 @@ def main():
                         "description": "Event weight for pileup reweighting"
                         },
                     "data": {
-                        "nodetype": "binning",
-                        "input": "NumTrueInteractions",
-                        "edges": list(ratioBins),
-                        "content": [
-                            {
-                                "nodetype": "category",
-                                "input": "weights",
-                                "content": (
-                                     [{"key": "nominal", "value": nomRatio[i]}]+
-                                    ([{"key": "up", "value": upRatio[i]}] if upRatio is not None else [])+
-                                    ([{"key": "down", "value": downRatio[i]}] if downRatio is not None else [])
-                                    )
-                                }
-                            for i in range(nomRatio.shape[0])
-                            ],
-                        "flow": "clamp"
+                        "nodetype": "category",
+                        "input": "weights",
+                        "content": ([{
+                            "key": "nominal",
+                            "value": {
+                                "nodetype": "binning",
+                                "input": "NumTrueInteractions",
+                                "flow": "clamp",
+                                "edges": list(ratioBins),
+                                "content": list(nomRatio)
+                            }}]+([{
+                                "key": "up",
+                                "value": {
+                                    "nodetype": "binning",
+                                    "input": "NumTrueInteractions",
+                                    "flow": "clamp",
+                                    "edges": list(ratioBins),
+                                    "content": list(upRatio)
+                                }}] if upRatio is not None else []
+                            )+([{
+                                "key": "down",
+                                "value": {
+                                    "nodetype": "binning",
+                                    "input": "NumTrueInteractions",
+                                    "flow": "clamp",
+                                    "edges": list(ratioBins),
+                                    "content": list(downRatio)
+                                }}] if downRatio is not None else [])
+                            )
                         }
                     }]
                 }
