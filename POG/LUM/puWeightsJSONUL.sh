@@ -1,4 +1,4 @@
-scriptName="../../examples/makePUReWeightJSON.py"
+scriptName="makePUReWeightJSON.py"
 
 python "${scriptName}" --nominal=/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/PileUp/UltraLegacy/PileupHistogram-goldenJSON-13tev-2016-preVFP-69200ub-99bins.root --up=/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/PileUp/UltraLegacy/PileupHistogram-goldenJSON-13tev-2016-preVFP-72400ub-99bins.root --down=/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/PileUp/UltraLegacy/PileupHistogram-goldenJSON-13tev-2016-preVFP-66000ub-99bins.root --makePlot -o 2016preVFP_UL/puWeights.json --mcprofile=2016UL_25ns --format=correctionlib --name=Collisions16_UltraLegacy_goldenJSON
 
