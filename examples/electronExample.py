@@ -1,7 +1,7 @@
 ## example how to read the electron format v2
 from correctionlib import _core
 
-evaluator = _core.CorrectionSet.from_file('./../POG/EGM/electron.json')
+evaluator = _core.CorrectionSet.from_file('./../POG/EGM/2016postVFP_UL/electron.json')
 
 #Reconstruction (pT< 20 GeV) Run-2 scale factor
 valsf= evaluator["UL-Electron-ID-SF"].evaluate("2016postVFP","sf","RecoBelow20",1.1, 15.0)
