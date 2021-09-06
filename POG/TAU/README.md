@@ -39,6 +39,14 @@ The SFs are meant for the following campaigns:
 ## Usage
 
 Please install the [`correctionlib`](https://github.com/cms-nanoAOD/correctionlib) tool to read these SFs.
+There are several ways to install, but the best way is via `python3`, for example,
+```
+source /cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos7-gcc8-opt/setup.sh
+git clone --recursive https://github.com/cms-tau-pog/correctionlib.git
+cd correctionlib
+python3 -m pip install .
+python3 -c 'import correctionlib._core; import correctionlib.schemav2' # test
+```
 Find out the content of the `tau.json` using
 ```
 gunzip POG/TAU/2018_ReReco/tau.json.gz
