@@ -2,7 +2,7 @@ test:
   stage: test
   image: python:3.9.4
   script:
-#    - pip install correctionlib==v2.0.0
+####    - pip install correctionlib==v2.0.0
     - git clone https://cms-nanoAOD:Xi1nyy2QgmDfE9qv2M95@gitlab.cern.ch/cms-nanoAOD/jsonpog-integration.git  -b master cms-nanoAOD-repo --depth 1
     - rm -rf script && cp -r cms-nanoAOD-repo/script .
     - script/runTest.sh
