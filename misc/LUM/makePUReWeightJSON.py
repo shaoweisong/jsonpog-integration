@@ -127,6 +127,7 @@ def main():
     parser.add_argument("--mctreename", type=str, default="Events", help="Name of the tree to use in mcfiles")
     parser.add_argument("--mcreweightvar", type=str, default="Pileup_nTrueInt", help="Name of the branch in the tree of the mcfiles to use for getting a histogram")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print verbose output")
+    parser.add_argument("--gzip", action="store_true", help="Save the output as gzip file")
     args = parser.parse_args()
     logging.basicConfig(level=(logging.DEBUG if args.verbose else logging.INFO))
     if args.makePlot:
@@ -137,6 +138,12 @@ def main():
         except Exception as ex:
             logger.warning("matplotlib could not be imported, so no plot will be produced")
             args.makePlot = False
+    if args.gzip:
+        try:
+            import gzip, io
+        except Exception as ex:
+            logger.warning("gzip or io could not be imported, output will be stored as regular file")
+            args.gzip = False
     if args.listmcprofiles:
         logger.info("The known PU profiles are: {0}".format(", ".join(repr(k) for k in mcPUProfiles)))
         return
@@ -263,8 +270,15 @@ def main():
                 }
     else:
         raise ValueError(f"Unsupported output format: {args.format}")
-    with open(args.output, "w") as outF:
-        json.dump(out, outF)
+    if args.gzip:
+        outN = args.output
+        if not outN.endswith(".gz"):
+            outN = outN+".gz"
+        with gzip.open(outN, "wb") as outF, io.TextIOWrapper(outF, encoding="utf-8") as outE:
+            json.dump(out, outE)
+    else:
+        with open(args.output, "w") as outF:
+            json.dump(out, outF)
 
     if args.makePlot:
         fig,(ax,rax) = plt.subplots(2,1, figsize=(6,6), sharex=True)
