@@ -66,16 +66,3 @@ See folder Examples on how to read a scale factor value
 locally `correction summary file.json`
 look what is available here https://cms-nanoaod-integration.web.cern.ch/commonJSONSFs/
 
-
-# Instructions for testing the PRs
- 
-1. Go to: Pipelines [left side]
-
-2. In "Run for branch name or tag" use: master
-
-3. In "Variables":
-
-For "Input variable key": CI_PIPELINE_SOURCE 
-
-For "Input variable value": branch_name [i.e., the branch name of the PR]
-
