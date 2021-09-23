@@ -48,7 +48,8 @@ Goal of the test:
 
 **Distribution to users**
 
-/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration is available and synched daily with latest commit of master branch of https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration
+> /cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration 
+is available and synched daily with latest commit of master branch of https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration
 
 
 **HOW to read the jsons**
