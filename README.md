@@ -48,8 +48,8 @@ Goal of the test:
 
 **Distribution to users**
 
-Once the PR is merged a copy is saved in */cvmfs/cms.cern.ch* for distribution.
-A script on CVMFS downloads all the tags available.
+/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration is available and synched daily with latest commit of master branch of https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration
+
 
 **HOW to read the jsons**
 
@@ -61,7 +61,8 @@ See folder Examples on how to read a scale factor value
 
 **INSPECT the jsons**
 
-`correction summary file.json`
+locally `correction summary file.json`
+look what is available here https://cms-nanoaod-integration.web.cern.ch/commonJSONSFs/
 
 
 # Instructions for testing the PRs
