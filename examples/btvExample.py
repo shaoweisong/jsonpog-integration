@@ -1,7 +1,7 @@
 ## Example showing how to read the BTV scale factors
 from correctionlib import _core
 
-evaluator = _core.CorrectionSet.from_file('./../POG/BTV/2017_UL/btagging.json')
+evaluator = _core.CorrectionSet.from_file('./../POG/BTV/2017_UL/btagging.json.gz')
 
 # Reading deepCSV working point and reshaping
 
@@ -28,7 +28,7 @@ print("deepJet reshaping scale factor is: "+str(valsf_deepJet_shape))
 
 # Sanity check of the UL 18 version
 
-evaluator = _core.CorrectionSet.from_file('./../POG/BTV/2018_UL/btagging.json')
+evaluator = _core.CorrectionSet.from_file('./../POG/BTV/2018_UL/btagging.json.gz')
 
 valsf_deepCSV_wp = evaluator["deepCSV_wp"].evaluate("central", "comb", "M", 4, 0., 30.)
 print("deepCSV working point scale factor in UL 18 is: "+str(valsf_deepCSV_wp))
