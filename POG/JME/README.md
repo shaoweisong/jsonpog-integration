@@ -11,7 +11,7 @@ For the JERC-part we currently provide
 - Jet resolution scale factors + systematics ("nom","up","down") (as of now only for AK4)
 - Jet pt resolution parametrisations (as of now only for AK4)
 
-The .json files are splitted in YEAR_jmar.json for tagging SFs and \[jet/fatJet\]_jerc.json.gz (as of nanoAODv9: jet\~"AK4PFchs"; fatJet\~"AK4PFPuppi") for jet energy corrections/resolutions.
+The .json files are splitted in YEAR_jmar.json for tagging SFs and \[jet/fatJet\]_jerc.json.gz (as of nanoAODv9: jet\~"AK4PFchs"; fatJet\~"AK8PFPuppi") for jet energy corrections/resolutions.
 
 The SFs are meant for the following campaigns:
 
