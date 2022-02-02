@@ -1,10 +1,15 @@
 # JetMET POG-recommonded corrections
 
-This repository contains the scale factors (SFs) for heavy object tagging, PUJetID and Quark-Gluon tagging and jet energy corrections recommended by the JetMET POG.
+This repository contains the scale factors (SFs) for heavy object tagging, PUJetID and Quark-Gluon tagging and jet energy corrections and resolutions recommended by the JetMET POG.
 More detailed recommendations can be found on this TWiki page: https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetMET#Quick_links_to_current_recommend
 
 The exact mapping for **JEC and JER** versions is available from https://twiki.cern.ch/twiki/bin/viewauth/CMS/JECDataMC and https://twiki.cern.ch/twiki/bin/view/CMS/JetResolution#JER_Scaling_factors_and_Uncertai
-
+For the JERC-part we currently provide
+- single jet energy correction levels (L1Fastjet, L2Relative, L3Absolute, L2L3Residual)
+- convenience "compound" correction level available as L1L2L3Res (combining all levels listed above)
+- All uncertainty sources as detailed in https://twiki.cern.ch/twiki/bin/view/CMS/JECUncertaintySources (as of now the full set, not the reduced set)
+- Jet resolution scale factors + systematics ("nom","up","down")
+- Jet resolution parametrisations ([Pt/Eta/Phi]Resolution)
 
 The .json files are splitted in YEAR_jmar.json for tagging SFs and \[jet/fatJet\]_jerc.json.gz (as of nanoAODv9: jet~"AK4PFchs"; fatJet~"AK4PFPuppi") for jet energy corrections/resolutions.
 
