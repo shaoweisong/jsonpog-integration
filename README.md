@@ -16,7 +16,7 @@ Each object have a json, and each POG has a folder for storage
 |          |  "" | jetCHS.json |
 | POG/BTV  |  "" | btagging.json |
 |          |  "" | ctagging.json |
-| POG/BTV  |  "" | subjet_tagging.json |
+|          |  "" | subjet_tagging.json |
 | POG/LUM  |  "" | puWeights.json | 
 
 Initial notes: 
