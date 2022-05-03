@@ -14,8 +14,9 @@ Each object have a json, and each POG has a folder for storage
 | POG/MUON |  "" | muon.json |
 | POG/JME  |  "" | fatJetPuppi.json |
 |          |  "" | jetCHS.json |
-| POG/BTV  |  "" | bjets.json |
-|          |  "" | cjets.json |
+| POG/BTV  |  "" | btagging.json |
+|          |  "" | ctagging.json |
+|          |  "" | subjet_tagging.json |
 | POG/LUM  |  "" | puWeights.json | 
 
 Initial notes: 
