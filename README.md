@@ -14,8 +14,9 @@ Each object have a json, and each POG has a folder for storage
 | POG/MUON |  "" | muon.json |
 | POG/JME  |  "" | fatJetPuppi.json |
 |          |  "" | jetCHS.json |
-| POG/BTV  |  "" | bjets.json |
-|          |  "" | cjets.json |
+| POG/BTV  |  "" | btagging.json |
+|          |  "" | ctagging.json |
+|          |  "" | subjet_tagging.json |
 | POG/LUM  |  "" | puWeights.json | 
 
 Initial notes: 
@@ -48,8 +49,10 @@ Goal of the test:
 
 **Distribution to users**
 
-Once the PR is merged a copy is saved in */cvmfs/cms.cern.ch* for distribution.
-A script on CVMFS downloads all the tags available.
+
+_/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration_
+is available and synched daily with latest commit of master branch of https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration
+
 
 **HOW to read the jsons**
 
@@ -61,18 +64,6 @@ See folder Examples on how to read a scale factor value
 
 **INSPECT the jsons**
 
-`correction summary file.json`
-
-
-# Instructions for testing the PRs
- 
-1. Go to: Pipelines [left side]
-
-2. In "Run for branch name or tag" use: master
-
-3. In "Variables":
-
-For "Input variable key": CI_PIPELINE_SOURCE 
-
-For "Input variable value": branch_name [i.e., the branch name of the PR]
+locally `correction summary file.json`
+look what is available here https://cms-nanoaod-integration.web.cern.ch/commonJSONSFs/
 
