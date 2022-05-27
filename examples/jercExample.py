@@ -6,9 +6,15 @@
 # https://github.com/cms-jet/JECDatabase/blob/master/scripts/JERC2JSON/minimalDemo.py
 
 import correctionlib._core as core
+exampleEvaluateValueDict = {
+    "JetPt": 100.,
+    "JetEta": 0.,
+    "Rho": 15.,
+    "JetA": .5,
+    "systematic": "nom",
+}
 jec,algo,algoAK8,lvl,unc=("Summer19UL16_V7_MC","AK4PFchs","AK8PFPuppi","L2Relative","Total")
-pt,eta,rho,area=(100.,0.,15.,.5)
-print("\JEC Parameters: ", jec, algo, algoAK8, lvl, unc,  pt, eta, rho, area)
+print("\JEC Parameters: ", jec, algo, algoAK8, lvl, unc,  exampleEvaluateValueDict["JetPt"], exampleEvaluateValueDict["JetEta"], exampleEvaluateValueDict["Rho"], exampleEvaluateValueDict["JetA"])
 
 print("\n\nSingle JEC level:\n===================")
 #JSON (JEC,single)
@@ -18,8 +24,10 @@ print("JSON access to: {}_{}_{} and _{}".format(jec, lvl, algo, algoAK8))
 sf=cset["{}_{}_{}".format(jec, lvl, algo)]
 sfAK8=csetAK8["{}_{}_{}".format(jec, lvl, algoAK8)]
 print([input.name for input in sf.inputs])
-print("JSON result AK4: {}".format(sf.evaluate(eta,pt)))
-print("JSON result AK8: {}".format(sfAK8.evaluate(eta,pt)))
+inputs = [exampleEvaluateValueDict[input.name] for input in sf.inputs]
+print("JSON result AK4: {}".format(sf.evaluate(*inputs)))
+inputs = [exampleEvaluateValueDict[input.name] for input in sfAK8.inputs]
+print("JSON result AK8: {}".format(sfAK8.evaluate(*inputs)))
 
 
 print("\n\nCompound JEC:\n===================")
@@ -29,8 +37,10 @@ print("JSON access to: {}_{}_{} and _{}".format(jec,compoundLevel , algo, algoAK
 sf=cset.compound["{}_{}_{}".format(jec, compoundLevel, algo)]
 sfAK8=csetAK8.compound["{}_{}_{}".format(jec, compoundLevel, algoAK8)]
 print([input.name for input in sf.inputs])
-print("JSON result AK4: {}".format(sf.evaluate(area,eta,pt,rho)))
-print("JSON result AK8: {}".format(sfAK8.evaluate(area,eta,pt,rho)))
+inputs = [exampleEvaluateValueDict[input.name] for input in sf.inputs]
+print("JSON result AK4: {}".format(sf.evaluate(*inputs)))
+inputs = [exampleEvaluateValueDict[input.name] for input in sfAK8.inputs]
+print("JSON result AK8: {}".format(sfAK8.evaluate(*inputs)))
 
 
 print("\n\n JECSource:\n===========")
@@ -38,12 +48,12 @@ print("\n\n JECSource:\n===========")
 print("JSON access to: {}_{}_{}".format(jec, unc, algo))
 sf=cset["{}_{}_{}".format(jec, unc, algo)]
 print([input.name for input in sf.inputs])
-print("JSON result: {}".format(sf.evaluate(eta,pt)))
+inputs = [exampleEvaluateValueDict[input.name] for input in sf.inputs]
+print("JSON result: {}".format(sf.evaluate(*inputs)))
 
 
 jer,algo,algoAK8,syst=("Summer20UL16_JRV3_MC","AK4PFchs","AK8PFchs","nom")
-pt,eta,rho=(100.,0.,15.)
-print("\n\n JER parameters: ", jer, algo, algoAK8, lvl, syst,  pt, eta)
+print("\n\n JER parameters: ", jer, algo, algoAK8, lvl, syst,exampleEvaluateValueDict["JetPt"], exampleEvaluateValueDict["JetEta"], exampleEvaluateValueDict["Rho"])
 
 print("\n\n JER SF:\n=========")
 #JSON (JER scale factor)
@@ -51,8 +61,9 @@ print("JSON access to: {}_{}_{} and _{}".format(jer, "ScaleFactor", algo, algoAK
 sf=cset["{}_ScaleFactor_{}".format(jer, algo)]
 #sfAK8=csetAK8["{}_ScaleFactor_{}".format(jer, algoAK8)]
 print([input.name for input in sf.inputs])
-print("JSON result AK4: {}".format(sf.evaluate(eta,syst)))
-#print("JSON result AK8: {}".format(sfAK8.evaluate(eta,syst))) #not included in current release
+inputs = [exampleEvaluateValueDict[input.name] for input in sf.inputs]
+print("JSON result AK4: {}".format(sf.evaluate(*inputs)))
+#print("JSON result AK8: {}".format(sfAK8.evaluate(*inputs))) #not included in current release
 
 
 print("\n\n PtResolution:\n==============")
@@ -62,7 +73,8 @@ print("JSON access to: {}_{}_{} and _{}".format(jer, ResolutionChoice, algo, alg
 sf=cset["{}_{}_{}".format(jer, ResolutionChoice, algo)]
 #sfAK8=csetAK8["{}_{}_{}".format(jer, ResolutionChoice, algoAK8)]
 print([input.name for input in sf.inputs])
-print("JSON result AK4: {}".format(sf.evaluate(eta,pt,rho)))
-#print("JSON result AK8: {}".format(sfAK8.evaluate(eta,pt,rho))) #not included in current release
+inputs = [exampleEvaluateValueDict[input.name] for input in sf.inputs]
+print("JSON result AK4: {}".format(sf.evaluate(*inputs)))
+#print("JSON result AK8: {}".format(sfAK8.evaluate(*inputs))) #not included in current release
 
 
