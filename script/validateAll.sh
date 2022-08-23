@@ -16,7 +16,7 @@ for i in $(find ${SOURCE}/POG -name "*.json*"); do
         echo "#################################################################"
         echo
         BROKEN_FILES+=($i)
-        STATUS=-1
+        STATUS=1
     fi
 done
 

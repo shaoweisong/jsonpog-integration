@@ -1,19 +1,43 @@
-test:
-  stage: test
-  image: python:3.9.4
-  script:
+default:
+  image: python:3.9
+  before_script:
     - pip install correctionlib
-    - git clone https://cms-nanoAOD:Xi1nyy2QgmDfE9qv2M95@gitlab.cern.ch/cms-nanoAOD/jsonpog-integration.git -b master cms-nanoAOD-repo --depth 1
-    - cms-nanoAOD-repo/script/runTest.sh . cms-nanoAOD-repo
-
-deploy-prod:
-  stage: deploy
-  script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
 
 workflow:
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
-      #      when: never
-      #- if: '$CI_COMMIT_BRANCH'
+    # avoid duplicate pipelines when pushing to an open MR
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+        when: never
+    - if: $CI_COMMIT_BRANCH
+
+test-mr:
+  stage: test
+  script:
+    - git clone https://cms-nanoAOD:Xi1nyy2QgmDfE9qv2M95@gitlab.cern.ch/cms-nanoAOD/jsonpog-integration.git -b master cms-nanoAOD-repo --depth 1
+    - cms-nanoAOD-repo/script/testMR.sh . cms-nanoAOD-repo
+  artifacts:
+    paths:
+      - change_report.log
+  only:
+    - merge_requests
+
+comment-mr:
+  stage: test
+  needs: [test-mr]
+  script:
+    - cms-nanoAOD-repo/script/gitlab_post_comment.py change_report.log
+  only:
+    - merge_requests
+
+test:
+  stage: test
+  script:
+    - script/validateAll.sh .
+
+deploy-summary:
+  stage: deploy
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+  only:
+    - master@cms-nanoAOD/jsonpog-integration
