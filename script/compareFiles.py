@@ -27,30 +27,32 @@ class Report:
 
         console = Console(width=100, color_system=None)
 
-        console.print("# Comparison report\n")
+        console.print(f"\n### Comparison: file {files[1]}\n")
         console.print(f"Old file: `{files[0]}`\n")
-        console.print(f"New file: `{files[1]}`\n")
 
         if len(self.corr_version_error):
-            console.print("\n## Version ERRORS\n")
+            console.print("\n#### Version errors\n")
             console.print("These corrections should increase their version numbers:\n")
             _print_cv(self.corr_version_error, msg=" is already in use")
 
-        elif len(self.corr_removed):
-            console.print("\n## Removed corrections\n")
+        if len(self.corr_removed):
+            console.print("\n#### Removed corrections\n")
             _print_cv(self.corr_removed)
 
-        elif len(self.corr_added):
-            console.print("\n## Added corrections\n")
+        if len(self.corr_added):
+            console.print("\n#### Added corrections\n")
             for added in self.corr_added:
                 console.print(added)
 
-        elif len(self.corr_updated):
-            console.print("\n## Updated corrections\n")
+        if len(self.corr_updated):
+            console.print("\n#### Updated corrections\n")
             for old, new in self.corr_updated:
                 console.print(Columns([old, new], width=40, equal=True, expand=True))
 
-        else:
+        if len(self.corr_version_error) + \
+            len(self.corr_removed) + \
+            len(self.corr_added) + \
+            len(self.corr_updated) == 0:
             console.print("No significant difference in the corrections")
 
     def status_code(self):
@@ -63,8 +65,8 @@ def compare_corrections(c1, c2):
     """Return False if the two corrections differ in their content
     Differences in name, version or description are not considered"""
 
-    for key in ["inputs", "output", "data"]:
-        if c1[key] != c2[key]:
+    for key in ["inputs", "output", "data", "generic_formulas"]:
+        if c1.get(key) != c2.get(key):
             return False
     return True
 

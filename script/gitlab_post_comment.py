@@ -3,26 +3,24 @@ import os
 import sys
 from urllib import parse, request
 
-iid = os.environ['PR_GITLAB_IID']
+iid = os.environ['CI_MERGE_REQUEST_IID']
+project = os.environ['CI_MERGE_REQUEST_PROJECT_PATH'].replace("/", "%2F")
 
-if 'GITLAB_TOKEN' in os.environ:
-    token = os.environ['GITLAB_TOKEN'];
+if 'GITLAB_API_TOKEN' in os.environ:
+    token = os.environ['GITLAB_API_TOKEN'];
 else:
     token=("".join(open("%s/private/gitlab-token" % os.environ['HOME']))).strip()
 
-if len(sys.argv) > 1:
-    if sys.argv[1] == "-":
-        review_body = "".join(sys.stdin)
-    elif os.path.isfile(sys.argv[1]):
-        review_body = "".join(open(sys.argv[1]))
-    else:
-        review_body = sys.argv[1]
+review_body = ""
+for f in sys.argv[1:]:
+    if os.path.isfile(f):
+        review_body += "".join(open(f)) + "\n"
 
-    blob = parse.urlencode({'body': review_body.replace("\n", "\r\n").replace('"', '\"').encode('utf-8')})
-    blob = blob.encode('utf-8')
-    request = request.Request(f"https://gitlab.cern.ch/api/v4/projects/cms-nanoAOD%2Fjsonpog-integration/merge_requests/{iid}/notes", blob, headers={'PRIVATE-TOKEN': token})
-    request.get_method = lambda: 'POST'
-    response = request.urlopen(request)
-    data = response.read().decode('utf-8')
-    print(data)
+blob = parse.urlencode({'body': review_body.replace("\n", "\r\n").replace('"', '\"').encode('utf-8')})
+blob = blob.encode('utf-8')
+req = request.Request(f"https://gitlab.cern.ch/api/v4/projects/{project}/merge_requests/{iid}/notes", blob, headers={'PRIVATE-TOKEN': token})
+req.get_method = lambda: 'POST'
+response = request.urlopen(req)
+data = response.read().decode('utf-8')
+print(data)
 
