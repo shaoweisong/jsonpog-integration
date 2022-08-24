@@ -38,9 +38,7 @@ test-mr:
   before_script:
     - source venv/bin/activate
   script:
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.cern.ch/swertz/jsonpog-integration.git -b improveTests cms-nanoAOD-repo --depth 1
-    #- git clone https://cms-nanoAOD:Xi1nyy2QgmDfE9qv2M95@gitlab.cern.ch/cms-nanoAOD/jsonpog-integration.git -b master cms-nanoAOD-repo --depth 1
-    #- cms-nanoAOD-repo/script/testMR.sh . cms-nanoAOD-repo
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.cern.ch/cms-nanoAOD/jsonpog-integration.git -b master cms-nanoAOD-repo --depth 1
     - script/testMR.sh . cms-nanoAOD-repo
   artifacts:
     # using variable here doesn't work (gitlab bug)
@@ -56,7 +54,6 @@ comment-mr:
   when: always
   script:
     - script/gitlab_post_comment.py $SUMMARY_REPORT
-    #- cms-nanoAOD-repo/script/gitlab_post_comment.py change_report.log
   only:
     - merge_requests
 
