@@ -1,12 +1,13 @@
 # jsonPOG-integration
- 
 
-**POG folder in gitlab**
+## Instructions for POGs to add corrections
+
+### [POG](./POG/) folder in the repository
 
 In this folder we store all the corrections.
-Each object have a json, and each POG has a folder for storage
+Each physics object has a separate json file, and each POG has a folder for storage.
 
-| directory  | year campaign | name.json |
+| directory  | year_campaign | name.json |
 | ---------- | --------------| ----------|
 | POG/EGM  | "X_Y"  | photon.json |
 |          |  "" | electron.json |
@@ -19,25 +20,22 @@ Each object have a json, and each POG has a folder for storage
 |          |  "" | subjet_tagging.json |
 | POG/LUM  |  "" | puWeights.json | 
 
-Initial notes: 
-1. different campaings are organized in folders with label "X_Y" i.e. (2016preVFP_UL, 2016postVFP_UL, 2017_UL, 2018_UL ...) (later we will add the *_EOY)
-2. each object in nano get one json
+To be taken care of:
+1. different campaings are organized in folders with label "X_Y" i.e. (2016preVFP_UL, 2016postVFP_UL, 2017_UL, 2018_UL, 2018_EOY...)
+2. each physics object in nanoAOD gets a separate json
 3. the "inputs" labels should be unique and standardized
-- (the X_Y year) should be kept in the json to mantain the provenance
-    X: 2016preVFP, 2016postVFP, 2017, 2018
-    Y: Prompt,EOY, UL
-    i.e. 2016postVFP_UL
-- second set use the string "sf","syst" (all lower cases)
+  - (the X_Y year) should be kept in the json to mantain the provenance
+  - second set use the string "sf","syst" (all lower cases)
 4. store the json in .gz format for compression
 
+### Before making a merge request
 
-**Repository with templates and tools in github**
+* Configure the forked project from which you will be making a merge request to properly run the test scripts:
+  * Create a project access token in the forked repository Settings > Access Tokens: create a token with `Reporter` rights and `api` scope
+  * Copy the token to a CI variable named `GITLAB_API_TOKEN` under the repository Settings > CI/CD > Variables
+* Make sure you have rebased your branch on top of the latest `master` branch from the [main project](https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration)
 
-for the time being things are here
-https://github.com/cms-nanoAOD/correctionlib
-
-
-**Script folder in gitlab**
+### Automatic tests
 
 Once a PR is made, a test is being started.
 The tests will happen with the script defined here
@@ -47,23 +45,16 @@ Goal of the test:
 * run the summary to inspect them 
 * at each change we create a verisioned object file and a tag for the whole set Vxx_yy.
 
-**Distribution to users**
+## Instructions for users
 
+The `correctionlib` library needed to read the files from python or C++ lives on [github](https://github.com/cms-nanoAOD/correctionlib), see
+its [documentation](https://cms-nanoaod.github.io/correctionlib/) for more information.
 
-_/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration_
-is available and synched daily with latest commit of master branch of https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration
+Some examples on how to the read the files are also provided here in the [examples](./examples/) folder.
 
+The latest files from the `master` branch from the [main project](https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration)
+are synced once a day to CVMFS at: `/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration`
 
-**HOW to read the jsons**
+The content of all the available files is summarized on [this webpage](https://cms-nanoaod-integration.web.cern.ch/commonJSONSFs/).
 
-Format of the evaluation i.e. for electron
-`evaluator[ JSON Map Name ].evaluate( year , Value Type , Working Point , eta , pt )`
-
-See folder Examples on how to read a scale factor value
-
-
-**INSPECT the jsons**
-
-locally `correction summary file.json`
-look what is available here https://cms-nanoaod-integration.web.cern.ch/commonJSONSFs/
-
+Inspecting the files manually can done using the command `correction summary file.json`.
