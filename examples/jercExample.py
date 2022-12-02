@@ -45,6 +45,8 @@ print("JSON result AK8: {}".format(sfAK8.evaluate(*inputs)))
 
 print("\n\n JECSource:\n===========")
 #JSON (JECSource)
+# additional note: Regrouped/reduced set of uncertainty sorces as detailed in https://twiki.cern.ch/twiki/bin/viewauth/CMS/JECUncertaintySources#Run_2_reduced_set_of_uncertainty are
+# included in relevant JSON files (currently UL) with a "Regrouped_"-prefix (e.g. for 2016 one could access "Absolute_2016" via sf=cset["Summer19UL16_V7_MC_Regrouped_Absolute_2016_AK4PFchs"])
 print("JSON access to: {}_{}_{}".format(jec, unc, algo))
 sf=cset["{}_{}_{}".format(jec, unc, algo)]
 print([input.name for input in sf.inputs])
