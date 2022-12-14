@@ -56,9 +56,9 @@ def get_run_from_era(era):
 def generate_json_summary(inPath, outPath):
     with open(os.devnull, "w") as devnull:
         console = Console(width=100, file=devnull, record=True)
-        cset = model_auto(open_auto(inPath))
+        cset = model_auto(open_auto(str(inPath)))
         console.print(cset)
-        console.save_html(outPath)
+        console.save_html(str(outPath))
 
 
 if __name__ == "__main__":
@@ -88,8 +88,8 @@ if __name__ == "__main__":
                 if json_file_p.suffixes not in [[".json"], [".json", ".gz"]]: continue
                 file_name = json_file_p.name.split(".")[0]
 
-                summary_file_p = summary_dir_p / f"{pog}_{era}_{fileNm}.html"
-                print(f"Generating HTML summary for {file_p}")
+                summary_file_p = summary_dir_p / f"{pog}_{era}_{file_name}.html"
+                print(f"Generating HTML summary for {json_file_p}")
                 generate_json_summary(json_file_p, summary_file_p)
 
                 files.append({
@@ -112,6 +112,6 @@ if __name__ == "__main__":
     )
 
     # also install javascript
-    script_dir_p = pl.Path(__file__) / "fancyTable"
-    shutil.copytree(script_dir_p, out_dir_p, dirs_exist_ok=True)
+    script_dir_p = pl.Path(__file__).parent / "fancyTable"
+    shutil.copytree(script_dir_p, out_dir_p / "fancyTable", dirs_exist_ok=True)
 
