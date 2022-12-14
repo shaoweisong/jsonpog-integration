@@ -6,18 +6,20 @@ import pathlib as pl
 import re
 import pandas as pd
 from rich.console import Console
+import shutil
 
 from correctionlib.highlevel import model_auto, open_auto
 
 
 template = \
-"""<html>
+"""<!DOCTYPE html>
+<html>
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="fancyTable.min.js"></script>
+    <script src="fancyTable/fancyTable.min.js"></script>
 
     <h3>Summary of common POG JSONs</h3>
     
@@ -108,3 +110,8 @@ if __name__ == "__main__":
                          files.to_html(index=False, table_id="jsonTable", escape=False)
                         )
     )
+
+    # also install javascript
+    script_dir_p = pl.Path(__file__) / "fancyTable"
+    shutil.copytree(script_dir_p, out_dir_p, dirs_exist_ok=True)
+
