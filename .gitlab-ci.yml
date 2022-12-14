@@ -87,11 +87,13 @@ generate-summary:
 # Deploy the pages generated to DFS (from https://gitlab.cern.ch/gitlabci-examples/deploy_dfs/)
 # DFS website location+credientials are in CI/CD variables
 dfsdeploy:
-    stage: deploy
-    needs: [generate-summary]
-    tags:
-      - docker
-    image: gitlab-registry.cern.ch/ci-tools/ci-web-deployer:latest
-    script:
-      - deploy-dfs
+  stage: deploy
+  needs: [generate-summary]
+  tags:
+    - docker
+  image: gitlab-registry.cern.ch/ci-tools/ci-web-deployer:latest
+  only:
+    - master@cms-nanoAOD/jsonpog-integration
+  script:
+    - deploy-dfs
 
