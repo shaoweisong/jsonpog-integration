@@ -1,5 +1,7 @@
 # jsonPOG-integration
 
+ [![pipeline status](https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration/badges/master/pipeline.svg)](https://gitlab.cern.ch/cms-nanoAOD/jsonpog-integration/-/commits/master) 
+
 ## Instructions for users
 
 The `correctionlib` library needed to read the files from python or C++ lives on [github](https://github.com/cms-nanoAOD/correctionlib), see
@@ -13,7 +15,7 @@ are synced once a day to CVMFS at: `/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog
 
 The content of all the available files is summarized on [this webpage](https://cms-nanoaod-integration.web.cern.ch/commonJSONSFs/).
 
-Inspecting the files manually can done using the command `correction summary file.json`.
+Inspecting the files manually can also be done using the command `correction summary file.json`.
 
 ## Instructions for POGs to add corrections
 
