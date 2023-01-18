@@ -32,7 +32,7 @@ template = \
                 sortColumn: 0,
                 pagination: true,
                 exactMatch: "auto",
-                perPage: 25
+                perPage: 20
             });
         });
     </script>
