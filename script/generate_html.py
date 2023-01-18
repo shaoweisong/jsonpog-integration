@@ -15,6 +15,7 @@ template = \
 """<!DOCTYPE html>
 <html>
 <head>
+    <title>Summary of common POG JSONs</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -97,7 +98,7 @@ if __name__ == "__main__":
                     "Era": year,
                     "Campaign": campaign,
                     "LHC Run": run,
-                    "File summary": f'<a href="summaries/{summary_file_p.name}">{file_name}</a>'
+                    "File summary": f'<a href="summaries/{summary_file_p.name}" target="_blank">{file_name}</a>'
                 })
 
     print("Generating index page")
