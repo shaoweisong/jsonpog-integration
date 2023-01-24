@@ -74,11 +74,36 @@ from correctionlib import _core
 evaluator = _core.CorrectionSet.from_file('2017_jmar.json')
 
 valsf= evaluator["DeepAK8_Top_Nominal"].evaluate(eta, pt, syst, wp)
-
+```
 
 Where `syst='nom'`, `'up'` or  `'down'`.
 All maps available and the corresponding input parameters can be seen by using the 'correction summary' option mentioned before.
 
+## MET Phi Corrections
+The UL Run II MET Phi Corrections from https://lathomas.web.cern.ch/lathomas/METStuff/XYCorrections/XYMETCorrection_withUL17andUL18andUL16.h can now be used with the correctionlib. This implementation was validated against the CMSSW implementation and an independent implementation of these corrections.
+
+The corrections depend on the pt and phi of the phi-uncorrected MET, the number of reconstructed primary vertices, and for data also on the run number. To have a similar call method, the call for simulation also expects a run number but this is not used in any way. The inputs can either all be provided as single numbers or as arrays of similar length. The data type for all inputs is (due to technical reasons) currently 'float'. The call to the evaluate methods returns always the corrected quantity i.e. the corrected pt(s) or the corrected phi(s).
+
+One can load the correction and get the corrected quantities e.g. via
+```
+# met_pt: float value or array of phi-uncorrected pt(s) of MET
+# met_phi: float value or array of phi-uncorrected phi(s) of MET
+# npvs: float value or array of number of reconstructed vertices
+# run: float value or array of run numbers (is needed for data and simulation, but will be ignored for simulation)
+ceval = correctionlib.CorrectionSet.from_file("2018_UL/met.json.gz")
+# simulation
+# phi-corrected pts
+corrected_pts = ceval["pt_metphicorr_pfmet_mc"].evaluate(met_pt,met_phi,npvs,run)
+# phi-corrected phis
+corrected_phis = ceval["phi_metphicorr_pfmet_mc"].evaluate(met_pt,met_phi,npvs,run)
+# data
+# phi-corrected pts
+corrected_pts = ceval["pt_metphicorr_pfmet_data"].evaluate(met_pt,met_phi,npvs,run)
+# phi-corrected phis
+corrected_phis = ceval["phi_metphicorr_pfmet_data"].evaluate(met_pt,met_phi,npvs,run)
+```
+
+An example script loading and applying the corrections can be found in `examples/metPhiCorrectionExample.py`. The inputs in this example are randomly drawn numbers so the 'corrected' distributions should not be taken too seriously.
 ## References
 
 The JMAR POG JSON files are created from https://github.com/cms-jet/JSON_Format
