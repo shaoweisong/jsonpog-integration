@@ -6,7 +6,6 @@ variables:
   CHANGE_REPORT: change_report.md
   SCHEMA_REPORT: schema_report.md
   SUMMARY_REPORT: summary.md
-  GITLAB_API_TOKEN: json_integration
 
 workflow:
   rules:
