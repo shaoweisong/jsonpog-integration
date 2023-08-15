@@ -22,7 +22,7 @@ setup-env:
     - python -m venv venv
     - source venv/bin/activate
   script:
-    - python -m pip install correctionlib rich pandas
+    - python -m pip install correctionlib rich pandas "pydantic<2"
   cache:
     paths: &venv_cache
       - .cache/pip
