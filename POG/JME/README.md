@@ -11,7 +11,9 @@ For the JERC-part we currently provide
 - Jet resolution scale factors + systematics ("nom","up","down") (as of now only for AK4)
 - Jet pt resolution parametrisations (as of now only for AK4)
 
-The .json files are splitted in YEAR_jmar.json for tagging SFs and \[jet/fatJet\]_jerc.json.gz (as of nanoAODv9: jet\~"AK4PFchs"; fatJet\~"AK8PFPuppi") for jet energy corrections/resolutions.
+The .json files are split into YEAR_jmar.json for tagging SFs and \[jet/fatJet\]_jerc.json.gz for jet energy corrections/resolutions.
+- Run2: jet\~"AK4PFchs"; fatJet\~"AK8PFPuppi"
+- Run3: jet\~"AK4PFPuppi"; fatJet\~"AK8PFPuppi"
 
 The SFs are meant for the following campaigns:
 
@@ -24,8 +26,8 @@ The SFs are meant for the following campaigns:
 | `2016postVFP_UL`| `RunIISummer20UL16MiniAODv2` |`21Feb2020`|
 | `2017_UL`| `RunIISummer20UL17MiniAODv2` |`09Aug2019`|
 | `2018_UL`| `RunIISummer20UL18MiniAODv2` |`12Nov2019`|
-
-
+| `2022_Prompt` | Winter22 | Prompt RunCDE |
+| `2022_Summer22EE` | Summer22EE | Prompt RunFG, with EE leak region vetoed |
 
 
 ## Usage
